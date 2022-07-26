@@ -1,6 +1,6 @@
 # Modified-PultoScope-by-Srukami
-This is my successful version for PultoScope designed by Srukami. Since the TFT display is different with TFT display used by author,
-i change the TFT library to MCUFriend KBV library, and working.
+This is my successful version for PultoScope designed by Srukami. Since my 2.4" TFT display shield is different with TFT display used by author,
+i change the original TFT library to MCUFriend KBV library, and working.
 
 The original design is here, use Google translate to understand:
 http://srukami.inf.ua/pultoscop_v2.html
