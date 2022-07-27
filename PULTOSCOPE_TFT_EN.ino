@@ -1,7 +1,16 @@
-//страничка проекта http://srukami.inf.ua/pultoscop_v2.html
+/*******************************************************************************************
+Pultoscope by Srukami, make it easier mods by rudik wid, author of Youtube channel: "Ngoprek di rumah YT" 280722
+When i breadboarded this project as is, i can upload successfuly to Arduino,
+but suddenly the TFT is only showing white blank flickering, dozen efforts corrections made but still no luck,
+Then i try porting this to MCUFriend_KBV library, magic is happened, and now my TFT showing correct display.
+Some lucky person around the globe who find this crappy github, i believe this is useful as cure for their headache.
+********************************************************************************************/
+
+
+//страничка проекта http://srukami.inf.ua/pultoscop_v2.html   // the author homepage, you must visit and turn on your language translation
 //дистплей TFT SPFD5408
 #include <Adafruit_GFX.h>    // Core graphics library
-//#include <Adafruit_TFTLCD.h> // Hardware-specific library, OFF-ed, not working by rudik
+//#include <Adafruit_TFTLCD.h> // Hardware-specific library, OFF-ed, not working for me :/
 
 #include <MCUFRIEND_kbv.h>   //added by rudik
 MCUFRIEND_kbv tft;           //added by rudik
@@ -25,9 +34,9 @@ MCUFRIEND_kbv tft;           //added by rudik
 //Adafruit_TFTLCD tft(LCD_CS, LCD_CD, LCD_WR, LCD_RD, LCD_RESET); //off-ed by rudik
 
 //user settings!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-#define levo 12       //tombol left (-)
-#define ok 11         //tombol OK
-#define pravo 10      //tombol Right (+)
+#define levo 12       //push button left (-)
+#define ok 11         //push button OK
+#define pravo 10      //push button Right (+)
 #define vertikal 2    //vertical grid size (if "0" disables)
 
 //user settings!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -52,7 +61,7 @@ void setup(){
     if(opornoe==1){ADMUX = 0b01100101;}  //Выбор внешнего опорного - selecting external reference
     //uint16_t identifier = tft.readID(); 
      
-    tft.begin(0x7783);  //0x7783, ID LCD MCUfriend, added by rudik
+    tft.begin(0x7783);  //0x7783, TFT LCD MCUfriend specific ID, please run Chip IDentification using MCUFriend_kbv library example
     delay(50);
     tft.fillScreen(BLACK);
     delay(500);
@@ -106,7 +115,7 @@ void MenuT(){//перерисовка нижнего меню - bottom menu redr
     if(opornoe==0){tft.print(Vmax*1.1/255);}
     if(opornoe==1){tft.print(Vmax*5.3/255);}
     tft.print(" ");
-    tft.print("Vpp="); //Aslinya "B"
+    tft.print("Vpp="); // original author= "B"
     tft.print(Vakb);  
 }
 
@@ -303,4 +312,4 @@ if(paus==1){            //режим паузы =pause mode
 //отрисовка графика = drawing a graph
 }
 
-//EOF, inspected by rudik wid, Ngoprek di rumah YT, 26072022
+//EOF, inspected by rudik wid, Ngoprek di rumah YT, 27072022
